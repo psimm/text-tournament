@@ -1,0 +1,21 @@
+competitors:
+  - "Streamio"
+  - "Audiolizer"
+  - "Radio.Me"
+  - "MyTune"
+  - "SoundWave"
+  - "BeatRider"
+  - "Echo Tunes"
+  - "Cadence"
+  - "Listen.com"
+  - "MelodiX"
+attributes:
+  - "Pronounceability"
+  - "Descriptiveness"
+  - "Memorability "
+  - "Uniqueness"
+  - "Fun"
+label: "name ideas for a music service"
+out_file: data/audio.csv
+model: gpt-4o-mini
+threads: 32

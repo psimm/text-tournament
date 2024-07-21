@@ -1,0 +1,71 @@
+---
+title: "Tournament Results"
+format: html
+---
+
+```{python}
+# | echo: false
+# | tags: [parameters]
+filepath = "../data/results.csv"
+```
+
+```{python}
+# | echo: false
+
+import plotly.express as px
+import polars as pl
+from text_tournament.bradley_terry import bradley_terry
+
+results = pl.read_csv(filepath)
+
+num_competitors = len(
+    set(results["winner"].to_list()) | set(results["loser"].to_list())
+)
+```
+
+The relative strength of each competitor overall and on each attribute is estimated with the [Bradley-Terry model](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model). It uses the wins and losses of each competitor to estimate their strength. The strength of each competitor is scaled such that the strongest competitor has a strength of 100. The benefit over a simple win-loss ratio is that it accounts for the strength of the opponents.
+
+Each of the `{python} num_competitors` competitors was compared to each other on `{python} len(results["attribute"].unique())` attributes in both orders, for a total of `{python} len(results)` comparisons. The results are shown below.
+
+```{python}
+# | echo: false
+
+comparisons = ["overall"] + results["attribute"].unique().to_list()
+palette = px.colors.qualitative.Light24
+
+
+for comparison in comparisons:
+    if comparison == "overall":
+        bt = bradley_terry(results).sort("strength", descending=True)
+        competitors = bt["competitor"].to_list()
+        competitor_order = {competitor: i for i, competitor in enumerate(competitors)}
+        competitor_color = {
+            competitor: palette[i] for i, competitor in enumerate(competitors)
+        }
+    else:
+        bt = (
+            bradley_terry(results.filter(pl.col("attribute") == comparison))
+            .with_columns(
+                order=pl.col("competitor").replace(competitor_order),
+            )
+            .sort("order")
+        )
+
+    plot_df = bt.with_columns(
+        strength_scaled=(pl.col("strength") / pl.col("strength").max()) * 100
+    ).to_pandas()
+
+    fig = px.bar(
+        plot_df,
+        y="competitor",
+        x="strength_scaled",
+        orientation="h",
+        title=f"{comparison.capitalize()} Rankings",
+        labels={"competitor": "", "strength_scaled": "Strength"},
+        color="competitor",
+        color_discrete_map=competitor_color,
+    )
+    fig.update_layout(showlegend=False)
+    fig.show()
+
+```
