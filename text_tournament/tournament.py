@@ -107,11 +107,11 @@ def get_results(comparison_list: list[dict], threads: int) -> pl.DataFrame:
     help="A list 2 to 24 competitors to compare",
 )
 @click.option(
-    "--attribute",
+    "--attributes",
     "-a",
     type=str,
     multiple=True,
-    help="A list of attribute to compare",
+    help="A list of attributes to compare the competitors on",
 )
 @click.option(
     "--label",
@@ -142,7 +142,7 @@ def get_results(comparison_list: list[dict], threads: int) -> pl.DataFrame:
 )
 def main(
     competitors: set[str],
-    attribute: set[str],
+    attributes: set[str],
     label: str,
     filepath: str,
     model: str,
@@ -157,7 +157,7 @@ def main(
             yaml_config = yaml.safe_load(file)
 
         competitors = yaml_config.get("competitors", competitors)
-        attributes = yaml_config.get("attributes", attribute)
+        attributes = yaml_config.get("attributes", attributes)
         label = yaml_config.get("label", label)
         filepath = yaml_config.get("out_file", filepath)
         model = yaml_config.get("model", model)

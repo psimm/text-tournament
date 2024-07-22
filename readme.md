@@ -27,7 +27,7 @@ competitors:
 attributes:
   - "Pronounceability"
   - "Descriptiveness"
-  - "Memorability "
+  - "Memorability"
   - "Uniqueness"
   - "Fun"
 label: "name ideas for a music service"
@@ -36,10 +36,10 @@ model: gpt-4o
 threads: 32
 ```
 
-![Example ranking](img/ranking.png){width=400px}
+![Example ranking](img/ranking.png)
 
 See the full output here: [analysis.html]()
- 
+
 ⚠️ This approach is not a replacement for user testing or human judgement. It beats guessing and helps chow through a large number of options quickly. It's a great way to get a shortlist of competitors to test with real users or to get a sense of what's working and what's not.
 
 ## Installation
@@ -55,7 +55,7 @@ See the full output here: [analysis.html]()
 1. Run the `tournament` script with the options and attributes you want to compare. For example:
 
 ```bash
-tournament -o Apple -o Microsoft -o Google -a innovation -a trustworthiness --label companies --out_file data/results.csv
+tournament -c Apple -c Microsoft -c Google -a innovation -a trustworthiness --label companies --filepath data/results.csv
 ```
 
 This compares Apple, Microsoft and Google on innovation and trustworthiness. The results are saved to `data/results.csv`. The number of LLM calls is `n_options * n_attributes * 2`. The example above would run 8 completions.
@@ -64,8 +64,8 @@ Argument reference
 
 | Argument          | Description                                                                               | Example                     |
 | ----------------- | ----------------------------------------------------------------------------------------- | --------------------------- |
-| -c, --competitors | Add a competitor to the tournament.                                                       | -c 'Echo Tunes'             |
-| -a, --attributes  | Add an attribute to compare options on                                                    | -a innovation               |
+| -c, --competitors | Add a competitor to the tournament. Must set at least 2 and no more than 24 competitors   | -c 'Echo Tunes'             |
+| -a, --attributes  | Add an attribute to compare options on. At least one is required.                         | -a innovation               |
 | --label           | Label for the tournament, this is given to the model to help it make sense of the options | --label companies           |
 | --filepath        | File to save the results to                                                               | --out_file data/results.csv |
 | --model           | Name of the model to use                                                                  | --model gpt-4o-mini         |
