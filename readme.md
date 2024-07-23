@@ -52,7 +52,9 @@ See the full rankings here: [analysis.html](https://psimm.github.io/text-tournam
 
 ## Usage
 
-1. Run the `tournament` script with the options and attributes you want to compare. For example:
+### 1. Run a Tournament
+
+Run the `tournament` script with the options and attributes you want to compare. For example:
 
 ```bash
 tournament -c Apple -c Microsoft -c Google -a innovation -a trustworthiness --label companies --filepath data/results.csv
@@ -73,7 +75,9 @@ Argument reference
 
 The arguments can also be supplied in a .yml file. See `example/config.yml` for an example. Then run: `tournament --config example/config.yml`.
 
-1. Render the `analysis.qmd` file with Quarto to see the results. For example:
+### 2. Render the results
+
+Render the `analysis.qmd` file with Quarto to see the results. For example:
 
 ```bash
 quarto render text_tournament/analysis.qmd -P filepath:data/results.csv
@@ -82,8 +86,10 @@ quarto render text_tournament/analysis.qmd -P filepath:data/results.csv
 Note that the filepath must be relative to the location of the `analysis.qmd` file.
 
 View the rendered `analysis.html` file in a browser.
-s
-3. Check the reasons for the decisions in the `data/results.csv` file.
+
+### 3. Understand the reasons
+
+Check the reasons for the decisions in the `data/results.csv` file.
 
 ## Models
 
