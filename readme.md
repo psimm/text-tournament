@@ -38,7 +38,7 @@ threads: 32
 
 ![Example ranking](img/ranking.png)
 
-See the full output here: [analysis.html]()
+See the full rankings here: [analysis.html](https://psimm.github.io/text-tournament/) and the reasons for the decisions in the [data/audio.csv](data/audio.csv) file.
 
 ⚠️ This approach is not a replacement for user testing or human judgement. It beats guessing and helps chow through a large number of options quickly. It's a great way to get a shortlist of competitors to test with real users or to get a sense of what's working and what's not.
 

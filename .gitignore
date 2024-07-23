@@ -4,3 +4,4 @@ __pycache__/
 analysis_files/
 analysis.html
 data/
+!data/audio.csv
