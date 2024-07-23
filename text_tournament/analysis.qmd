@@ -31,8 +31,7 @@ Each of the `{python} num_competitors` competitors was compared to each other on
 # | echo: false
 
 comparisons = ["overall"] + results["attribute"].unique().to_list()
-palette = px.colors.qualitative.Light24
-
+palette = px.colors.qualitative.Dark24
 
 for comparison in comparisons:
     if comparison == "overall":

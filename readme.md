@@ -93,8 +93,4 @@ You can use another chat model by OpenAI or a [litellm-compatible](https://docs.
 
 ## Background
 
-I'll write a blog post about this. For now, here's a short explanation of how the comparisons are made:
-
-- Each competitor is compared to each other competitor on each attribute twice: once as the first option and once as the second option
-- Each matchup is a binary choice for the LLM
-- The results are analyzed with a [Bradley-Terry](https://en.wikipedia.org/wiki/Bradley%E2%80%93Terry_model) model to aggregate the results
+See my [blog post](https://simmering.dev/blog/text-tournament).
